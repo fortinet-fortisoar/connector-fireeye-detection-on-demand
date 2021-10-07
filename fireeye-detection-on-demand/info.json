@@ -1,0 +1,339 @@
+{
+  "name": "fireeye-detection-on-demand",
+  "label": "FireEye Detection On Demand",
+  "version": "1.0.0",
+  "description": "FireEye Detection On Demand is a threat detection service delivered as an API for integration into the SOC workflow, SIEM analytics, data repositories,or web applications, etc. It delivers flexible file and content analysis to identify malicious behavior wherever the enterprise needs it. This connector facilitates the automated operations related to files , reports, artifacts.",
+  "publisher": "Community",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "category": "Forensics and Malware Analysis",
+  "icon_small_name": "FireEye_Detection_32x32.png",
+  "icon_large_name": "FireEye_Detection_80x80.png",
+  "ingestion_supported": false,
+  "ingestion_modes": [],
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "description": "",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "server_url",
+        "value": "https://feapi.marketplace.apps.fireeye.com"
+      },
+      {
+        "title": "API key",
+        "description": "",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "api_key"
+      },
+      {
+        "title": "Verify SSL",
+        "description": "Specifies whether the SSL certificate for the Microsoft Azure AD Connect Health Feed is to be verified or not. By default, this option is set as True.",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_hashes",
+      "title": "Get File Reputation",
+      "description": "Retrieve malware results of a given MD5 hash",
+      "category": "investigation",
+      "annotation": "get_hashes",
+      "output_schema": {
+        "md5": "",
+        "is_malicious": "",
+        "engine_results": {
+          "dynamic_analysis": {
+            "verdict": ""
+          },
+          "av_lookup": {
+            "first_seen": "",
+            "last_seen": "",
+            "signature_name": [],
+            "verdict": ""
+          },
+          "dti_lookup": {
+            "first_seen": "",
+            "industry": [
+              ""
+            ],
+            "overall_weight": "",
+            "display_message": [],
+            "signature_name": [],
+            "verdict": ""
+          }
+        }
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "File Hash",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "type": "text",
+          "name": "hash",
+          "placeholder": "Only MD5 hash allowed",
+          "description": "The MD5 hash of a file you would like to request the malware analysis results for."
+        }
+      ]
+    },
+    {
+      "operation": "submit_urls",
+      "title": "Submit URLs",
+      "description": "Submit one or more URLs for analysis.",
+      "category": "investigation",
+      "annotation": "submit_urls",
+      "output_schema": {
+        "status": "",
+        "report_id": "",
+        "md5": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "URLs",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "type": "text",
+          "name": "hash",
+          "tooltip": "Maximum of 5 URLs allowed.",
+          "placeholder": "e.g. url1, url2",
+          "description": "Specify the list of URLs to submit for analysis in the form of '[url1,url2,...]'. Maximum of 5 URLs allowed."
+        }
+      ]
+    },
+    {
+      "operation": "submit_file",
+      "title": "Submit File",
+      "description": "Submit one or more URLs for analysis.",
+      "category": "investigation",
+      "annotation": "submit_urls",
+      "output_schema": {
+        "status": "",
+        "report_id": "",
+        "md5": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "URLs",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "type": "text",
+          "name": "hash",
+          "tooltip": "Maximum of 5 URLs allowed.",
+          "placeholder": "e.g. url1, url2",
+          "description": "Specify the list of URLs to submit for analysis in the form of '[url1,url2,...]'. Maximum of 5 URLs allowed."
+        }
+      ]
+    },
+    {
+      "operation": "get_reports",
+      "title": "Get Report",
+      "description": "Fetches the results of a single file submission, known as a report.",
+      "category": "investigation",
+      "annotation": "get_report",
+      "output_schema": {
+        "report_id": "",
+        "overall_status": "",
+        "is_malicious": "",
+        "started_at": "",
+        "completed_at": "",
+        "duration": "",
+        "file_name": "",
+        "file_size": "",
+        "file_extension": "",
+        "name": "",
+        "type": "",
+        "size": "",
+        "md5": "",
+        "sha256": "",
+        "sha1": "",
+        "magic": "",
+        "extracted_objects": [
+          {
+            "submission_uuid": "",
+            "object_uuid": "",
+            "name": "",
+            "type": "",
+            "complete_time": "",
+            "analyses_start_time": "",
+            "verdict": "",
+            "md5": "",
+            "sha256": "",
+            "status": "",
+            "size": "",
+            "is_malicious": ""
+          }
+        ],
+        "results": [
+          {
+            "object_uuid": "",
+            "analysis_results": [
+              {
+                "anomaly_types": [],
+                "os_info": "",
+                "engine": "",
+                "job_id": "",
+                "weight": "",
+                "signature_name": "",
+                "dynamic_analysis_uuid": ""
+              }
+            ]
+          }
+        ],
+        "artifacts_info": [
+          {
+            "object_artifact_details": [
+              {
+                "object_uuid": "",
+                "artifact_details": [
+                  {
+                    "video_path": "",
+                    "dynamic_analysis_uuid": "",
+                    "memory_dump": "",
+                    "pcap_path": "",
+                    "job_id": "",
+                    "profilename": ""
+                  }
+                ]
+              }
+            ],
+            "os_changes": "",
+            "os_changes_type": "",
+            "vm_artifacts_type": "",
+            "screenshot": "",
+            "vm_artifacts": "",
+            "artifact_uuid": "",
+            "screenshot_type": ""
+          }
+        ],
+        "engine_results": {
+          "dynamic_analysis": {
+            "uuid": "",
+            "is_malicious": "",
+            "analysis_info": {},
+            "files_analyzed": "",
+            "overall_weight": "",
+            "total_duration": ""
+          }
+        }
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Report ID",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "type": "text",
+          "name": "report_id",
+          "placeholder": "e.g. 992694b3-20ab-4245-9b4c-8f3a1b7ec3b6",
+          "description": "The report ID returned after successfully submitting a file."
+        },
+        {
+          "title": "Extended",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "type": "checkbox",
+          "tooltip": "Enable to see all malware engine reports",
+          "name": "extended",
+          "value": false,
+          "description": "Setting extended to true will allow you to see all malware engine reports. Default is false"
+        }
+      ]
+    },
+    {
+      "operation": "get_report_url",
+      "title": "Get Report URL",
+      "description": "Fetches a presigned URL link to a browser viewable report.",
+      "category": "investigation",
+      "annotation": "get_report_url",
+      "output_schema": {
+        "status": "",
+        "presigned_report_url": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Report ID",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "type": "text",
+          "name": "report_id",
+          "placeholder": "e.g 874da611-f82a-4331-afde-5943f4facb92",
+          "description": "The report ID returned after successfully submitting a file."
+        },
+        {
+          "title": "Expiry",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "type": "text",
+          "name": "report_id",
+          "tooltip": "Specify Expiry in hours. Default value is 72 hours.",
+          "placeholder": "Minimum is 1 hour, and maximum is 8760 hours allowed.",
+          "description": "Expiry (in hours) for browser viewable report presigned URL link. Default value is 72 hours. Minimum is 1 hour, and maximum is 8760 hours (365 days)."
+        }
+      ]
+    },
+    {
+      "operation": "get_artifacts",
+      "title": "Get Artifacts",
+      "description": "Fetches artifacts, like a screenshot gif file, for the given report_id",
+      "category": "investigation",
+      "annotation": "get_artifacts",
+      "output_schema": {},
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Report ID",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "type": "text",
+          "name": "report_id",
+          "placeholder": "e.g 874da611-f82a-4331-afde-5943f4facb92",
+          "description": "The report ID returned after successfully submitting a file."
+        },
+        {
+          "title": "Type",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "type": "text",
+          "name": "artifacts_type",
+          "tooltip": "Type of artifact to download",
+          "description": "Type of artifact to download. Available options are screenshot, os_changes, vm_artifacts"
+        },
+        {
+          "title": "Artifact UUID",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "type": "text",
+          "name": "artifacts_uuid",
+          "description": "Submitted sample can have more that one artifacts each artifact will have its on artifact uuid which is reported as part of reports api. User need to grab artifacts uuid from Get Report action."
+        }
+      ]
+    }
+  ]
+}
