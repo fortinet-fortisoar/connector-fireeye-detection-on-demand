@@ -1,0 +1,492 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "d5172328-5a36-4109-9971-e405240c8c29",
+      "@type": "WorkflowCollection",
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "899670d7-67c7-4ed1-8324-b0a3abb64834",
+          "collection": "/api/3/workflow_collections/d5172328-5a36-4109-9971-e405240c8c29",
+          "steps": [
+            {
+              "uuid": "78925cda-84cc-413c-a8d2-9b1692356433",
+              "recordTags": [
+                "/api/3/tags/fireeye_detection_on_demand"
+              ],
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "a43fd832-8d4a-44e2-a920-e4166401d750",
+                "title": "FireEye Detection On Demand: Get Hashes",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "c3dd58d0-c17c-4b1d-b30e-7b3ca900d3ee",
+              "@type": "WorkflowStep",
+              "name": "Get Hashes",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "FireEye Detection On Demand",
+                "config": "''",
+                "params": {
+                  "hash": ""
+                },
+                "version": "1.0.0",
+                "connector": "fireeye-detection-on-demand",
+                "operation": "get_hashes",
+                "operationTitle": "Get Hashes",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieve malware results of a given MD5 hash",
+          "name": "Get Hashes",
+          "tag": "#FireEye Detection On Demand",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/78925cda-84cc-413c-a8d2-9b1692356433",
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "24ffa192-1221-4c46-aacb-635f93150cb8",
+              "label": null,
+              "isExecuted": false,
+              "name": "Alerts -> Get Hashes",
+              "sourceStep": "/api/3/workflow_steps/78925cda-84cc-413c-a8d2-9b1692356433",
+              "targetStep": "/api/3/workflow_steps/c3dd58d0-c17c-4b1d-b30e-7b3ca900d3ee"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "0d8de393-f544-4a43-b693-21dbfaf97c92",
+          "collection": "/api/3/workflow_collections/d5172328-5a36-4109-9971-e405240c8c29",
+          "steps": [
+            {
+              "uuid": "897e48cc-0f5b-4096-bfd2-4f58e6411cba",
+              "recordTags": [
+                "/api/3/tags/fireeye_detection_on_demand"
+              ],
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "2334c22d-864c-4fde-8111-c5614c33d724",
+                "title": "FireEye Detection On Demand: Submit URLs",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "e882e4d5-efd2-4fe4-9d5b-392d9868c399",
+              "@type": "WorkflowStep",
+              "name": "Submit URLs",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "FireEye Detection On Demand",
+                "config": "''",
+                "params": {
+                  "hash": ""
+                },
+                "version": "1.0.0",
+                "connector": "fireeye-detection-on-demand",
+                "operation": "submit_urls",
+                "operationTitle": "Submit URLs",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Submit one or more URLs for analysis.",
+          "name": "Submit URLs",
+          "tag": "#FireEye Detection On Demand",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/897e48cc-0f5b-4096-bfd2-4f58e6411cba",
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "b44f5110-0192-4622-9050-e7f9f662bbce",
+              "label": null,
+              "isExecuted": false,
+              "name": "Alerts -> Submit URLs",
+              "sourceStep": "/api/3/workflow_steps/897e48cc-0f5b-4096-bfd2-4f58e6411cba",
+              "targetStep": "/api/3/workflow_steps/e882e4d5-efd2-4fe4-9d5b-392d9868c399"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "13b790ca-685c-4035-b8ca-d9a3638e5e44",
+          "collection": "/api/3/workflow_collections/d5172328-5a36-4109-9971-e405240c8c29",
+          "steps": [
+            {
+              "uuid": "a2e97d37-b5d1-43ef-b50f-c0fe25391895",
+              "recordTags": [
+                "/api/3/tags/fireeye_detection_on_demand"
+              ],
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "5ccb5491-5703-4fc3-a94d-613816e6e91d",
+                "title": "FireEye Detection On Demand: Submit File",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "96327273-2b67-4172-9d74-a7cb2f718dcc",
+              "@type": "WorkflowStep",
+              "name": "Submit File",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "FireEye Detection On Demand",
+                "config": "''",
+                "params": {
+                  "hash": ""
+                },
+                "version": "1.0.0",
+                "connector": "fireeye-detection-on-demand",
+                "operation": "submit_file",
+                "operationTitle": "Submit File",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Submit one or more URLs for analysis.",
+          "name": "Submit File",
+          "tag": "#FireEye Detection On Demand",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/a2e97d37-b5d1-43ef-b50f-c0fe25391895",
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "121b5cff-b8f4-4e40-a4f7-74bddf703571",
+              "label": null,
+              "isExecuted": false,
+              "name": "Alerts -> Submit File",
+              "sourceStep": "/api/3/workflow_steps/a2e97d37-b5d1-43ef-b50f-c0fe25391895",
+              "targetStep": "/api/3/workflow_steps/96327273-2b67-4172-9d74-a7cb2f718dcc"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "e22848d9-769e-426e-8129-73f735c7955f",
+          "collection": "/api/3/workflow_collections/d5172328-5a36-4109-9971-e405240c8c29",
+          "steps": [
+            {
+              "uuid": "02db3adf-c5c9-4374-8a19-1fdbcf13197a",
+              "recordTags": [
+                "/api/3/tags/fireeye_detection_on_demand"
+              ],
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "92056a1d-81af-4e85-8472-9299bc6b0624",
+                "title": "FireEye Detection On Demand: Get Report",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "8d656ef5-3bf1-48f4-ae4a-1219e0599412",
+              "@type": "WorkflowStep",
+              "name": "Get Report",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "FireEye Detection On Demand",
+                "config": "''",
+                "params": {
+                  "report_id": "",
+                  "extended": ""
+                },
+                "version": "1.0.0",
+                "connector": "fireeye-detection-on-demand",
+                "operation": "get_reports",
+                "operationTitle": "Get Report",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Fetches the results of a single file submission, known as a report.",
+          "name": "Get Report",
+          "tag": "#FireEye Detection On Demand",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/02db3adf-c5c9-4374-8a19-1fdbcf13197a",
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "cbef37e5-a2b7-4f7d-b234-be9ae578b2ed",
+              "label": null,
+              "isExecuted": false,
+              "name": "Alerts -> Get Report",
+              "sourceStep": "/api/3/workflow_steps/02db3adf-c5c9-4374-8a19-1fdbcf13197a",
+              "targetStep": "/api/3/workflow_steps/8d656ef5-3bf1-48f4-ae4a-1219e0599412"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "7ffe5cc8-d19b-49a3-909e-728b727cd4bc",
+          "collection": "/api/3/workflow_collections/d5172328-5a36-4109-9971-e405240c8c29",
+          "steps": [
+            {
+              "uuid": "85569ee3-71df-4888-8bac-139e3f560f9f",
+              "recordTags": [
+                "/api/3/tags/fireeye_detection_on_demand"
+              ],
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "415945b6-8990-46e8-bb29-899590f92ff0",
+                "title": "FireEye Detection On Demand: Get Report URL",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "9d75fb7a-26e1-4e9c-b623-981c6d5955f2",
+              "@type": "WorkflowStep",
+              "name": "Get Report URL",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "FireEye Detection On Demand",
+                "config": "''",
+                "params": {
+                  "report_id": ""
+                },
+                "version": "1.0.0",
+                "connector": "fireeye-detection-on-demand",
+                "operation": "get_report_url",
+                "operationTitle": "Get Report URL",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Fetches a presigned URL link to a browser viewable report.",
+          "name": "Get Report URL",
+          "tag": "#FireEye Detection On Demand",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/85569ee3-71df-4888-8bac-139e3f560f9f",
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "c43c15f0-f246-444a-9e65-47ba3813795f",
+              "label": null,
+              "isExecuted": false,
+              "name": "Alerts -> Get Report URL",
+              "sourceStep": "/api/3/workflow_steps/85569ee3-71df-4888-8bac-139e3f560f9f",
+              "targetStep": "/api/3/workflow_steps/9d75fb7a-26e1-4e9c-b623-981c6d5955f2"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "9c170506-3ca6-4c8e-b6f2-106d9b103d82",
+          "collection": "/api/3/workflow_collections/d5172328-5a36-4109-9971-e405240c8c29",
+          "steps": [
+            {
+              "uuid": "e8a81195-c7f1-4cf8-ba2a-1eaf6b3f757a",
+              "recordTags": [
+                "/api/3/tags/fireeye_detection_on_demand"
+              ],
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "4391e4d8-baa9-43e5-865c-d4ee577ce59d",
+                "title": "FireEye Detection On Demand: Get Artifacts",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "96ddf645-58f4-4758-a978-3f24a1f6fafa",
+              "@type": "WorkflowStep",
+              "name": "Get Artifacts",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "FireEye Detection On Demand",
+                "config": "''",
+                "params": {
+                  "report_id": "",
+                  "artifacts_type": "",
+                  "artifacts_uuid": ""
+                },
+                "version": "1.0.0",
+                "connector": "fireeye-detection-on-demand",
+                "operation": "get_artifacts",
+                "operationTitle": "Get Artifacts",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Fetches artifacts, like a screenshot gif file, for the given report_id",
+          "name": "Get Artifacts",
+          "tag": "#FireEye Detection On Demand",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/e8a81195-c7f1-4cf8-ba2a-1eaf6b3f757a",
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "85e0596d-816a-40d7-86ac-66bcae980337",
+              "label": null,
+              "isExecuted": false,
+              "name": "Alerts -> Get Artifacts",
+              "sourceStep": "/api/3/workflow_steps/e8a81195-c7f1-4cf8-ba2a-1eaf6b3f757a",
+              "targetStep": "/api/3/workflow_steps/96ddf645-58f4-4758-a978-3f24a1f6fafa"
+            }
+          ]
+        }
+      ],
+      "name": "Sample - FireEye Detection On Demand - 1.0.0",
+      "description": "FireEye Detection On Demand is a threat detection service delivered as an API for integration into the SOC workflow, SIEM analytics, data repositories,or web applications, etc. It delivers flexible file and content analysis to identify malicious behavior wherever the enterprise needs it. This connector facilitates the automated operations related to files , reports, artifacts.",
+      "visible": true,
+      "image": null
+    }
+  ]
+}
