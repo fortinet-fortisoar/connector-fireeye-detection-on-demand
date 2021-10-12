@@ -1,5 +1,4 @@
 import requests
-import json
 from requests import exceptions as req_exceptions
 from integrations.crudhub import make_request
 from connectors.core.connector import get_logger, ConnectorError, api_health_check
@@ -30,7 +29,6 @@ class FireeyeClient:
 
     def authenticate(self):
         try:
-
             self.make_rest_api_call('GET','/health', )
         except Exception as e:
             raise e
@@ -134,7 +132,7 @@ def submit_file(config, params):
         file_path, file_name = from_cyops_download_file(attachment_iri)
         file = {'file': (file_name, open(file_path, 'rb'))}
 
-        optional_params = ['password', 'param', 'screenshot', 'video', 'fileExtraction', 'memoryDump', 'pcap']
+        optional_params = ['password', 'parameters', 'file_extraction', 'memory_dump', 'pcap']
         data = {}
         for param in optional_params:
             value = params.get(param)
@@ -213,5 +211,4 @@ operations_dict = {
     'submit_urls': submit_urls,
     'get-report_url': get_report_url,
     'get_artifacts': get_artifacts
-
 }
