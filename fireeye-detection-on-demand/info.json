@@ -2,7 +2,7 @@
   "name": "fireeye-detection-on-demand",
   "label": "FireEye Detection On Demand",
   "version": "1.0.0",
-  "description": "FireEye Detection On Demand is a threat detection service delivered as an API for integration into the SOC workflow, SIEM analytics, data repositories,or web applications, etc. It delivers flexible file and content analysis to identify malicious behavior wherever the enterprise needs it. This connector facilitates the automated operations related to files , reports, artifacts.",
+  "description": "FireEye Detection On Demand is a threat detection service that uncovers harmful objects in the cloud. It delivers flexible file and content scanning capabilities to identify file-borne threats in your cloud, SOC, SIEM or files uploaded to web applications. This connector facilitates the automated operations related to submit files / urls , reports, artifacts.",
   "publisher": "Community",
   "cs_approved": false,
   "cs_compatible": true,
@@ -11,12 +11,12 @@
   "icon_large_name": "FireEye_Detection_80x80.png",
   "ingestion_supported": false,
   "ingestion_modes": [],
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/fireeye-detection-on-demand/167/fireeye-detection-on-demand-v1-0-0",
   "configuration": {
     "fields": [
       {
         "title": "Server URL",
-        "description": "",
+        "description": "URL of the FireEye Detection On Demand server to which you will connect and perform the automated operations. ",
         "required": true,
         "editable": true,
         "visible": true,
@@ -26,7 +26,7 @@
       },
       {
         "title": "API key",
-        "description": "",
+        "description": "API key that is configured for your account for using the FireEye Detection On Demand APIs. ",
         "required": true,
         "editable": true,
         "visible": true,
@@ -49,7 +49,7 @@
     {
       "operation": "get_hashes",
       "title": "Get File Reputation",
-      "description": "Retrieve malware results of a given MD5 hash",
+      "description": "Retrieves malware results for a specific MD5 hash from FireEye Detection On Demand based on the MD5 filehash you have specified. ",
       "category": "investigation",
       "annotation": "get_hashes",
       "output_schema": {
@@ -87,14 +87,14 @@
           "type": "text",
           "name": "hash",
           "placeholder": "Only MD5 hash allowed",
-          "description": "The MD5 hash of a file you would like to request the malware analysis results for."
+          "description": "MD5 hash of a file for which you want to retrieve the malware analysis results from FireEye Detection On Demand."
         }
       ]
     },
     {
       "operation": "submit_urls",
       "title": "Submit URLs",
-      "description": "Submit one or more URLs for analysis.",
+      "description": "Submits one or more URLs for analysis to FireEye Detection On Demand based on the list of URLs you have specified. ",
       "category": "investigation",
       "annotation": "submit_urls",
       "output_schema": {
@@ -113,16 +113,16 @@
           "name": "hash",
           "tooltip": "Maximum of 5 URLs allowed.",
           "placeholder": "e.g. url1, url2",
-          "description": "Specify the list of URLs to submit for analysis in the form of '[url1,url2,...]'. Maximum of 5 URLs allowed."
+          "description": "List of URLs that you want to submit for analysis to FireEye Detection On Demand. Use the '[url1,url2,...]' format to specify the URLs. You can specify a maximum of 5 URLs. "
         }
       ]
     },
     {
       "operation": "submit_file",
       "title": "Submit File",
-      "description": "Submit one or more URLs for analysis.",
+      "description": "Submit one or more Files for analysis to FireEye Detection On Demand based on the list of attachment ID you have specified. ",
       "category": "investigation",
-      "annotation": "submit_urls",
+      "annotation": "submit_files",
       "output_schema": {
         "status": "",
         "report_id": "",
@@ -131,22 +131,75 @@
       "enabled": true,
       "parameters": [
         {
-          "title": "URLs",
+          "title": "Attachment IRI",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "type": "text",
+          "name": "attachment_iri",
+          "placeholder": "e.g. /api/3/attachments/9d012a09-b3e4-4ae0-b774-170312d33cc7",
+          "tooltip": "IRI of the file that you want to submit for analysis to FireEye Detection On Demand.",
+          "description": "IRI of the file that you want to submit for analysis to FireEye Detection On Demand."
+        },
+        {
+          "title": "Password",
           "required": false,
           "visible": true,
           "editable": true,
           "type": "text",
-          "name": "hash",
-          "tooltip": "Maximum of 5 URLs allowed.",
-          "placeholder": "e.g. url1, url2",
-          "description": "Specify the list of URLs to submit for analysis in the form of '[url1,url2,...]'. Maximum of 5 URLs allowed."
+          "tooltip": "Password to be used by the detection engine to decrypt the password-protected file.",
+          "name": "password",
+          "description": "Password to be used by the detection engine to decrypt the password-protected file. "
+        },
+        {
+          "title": "Parameters",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "type": "text",
+          "placeholder": "e.g start -h localhost -p 5555",
+          "name": "parameters",
+          "description": "Command-line parameter(s) to be used by the detection engine when running the file. This parameter is mainly applicable to .exe files. For example, setting the parameter to \"start -h localhost -p 5555\" makes the detection engine run a file named \"malicious.exe\" as \"malicious.exe start -h localhost -p 5555\". "
+        },
+        {
+          "title": "File Extraction",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "type": "checkbox",
+          "tooltip": "Enable to extract the files that are dropped from the VM during dynamic analysis.",
+          "name": "file_extraction",
+          "value": false,
+          "description": "Select this checkbox, i.e set it to 'true' to extract the files that are dropped from the VM during dynamic analysis. You can download these extracted files using the \"Get Artifacts\" action."
+        },
+        {
+          "title": "Memory Dump",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "type": "checkbox",
+          "tooltip": "Enable to extract the memory dump files that are dropped from the VM during dynamic analysis.",
+          "name": "memory_dump",
+          "value": false,
+          "description": "Select this checkbox, i.e set it to 'true' to extract the memory dump files that are dropped from the VM during dynamic analysis. You can download these extracted memory dump files using the \"Get Artifacts\" action. "
+        },
+        {
+          "title": "PCAP",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "type": "checkbox",
+          "tooltip": "Enable to extract the PCAP files that are dropped from the VM during dynamic analysis.",
+          "name": "pcap",
+          "value": false,
+          "description": "Select this checkbox, i.e set it to 'true' to extract the PCAP files that are dropped from the VM during dynamic analysis. You can download these extracted PCAP files using the \"Get Artifacts\" action. "
         }
       ]
     },
     {
       "operation": "get_reports",
       "title": "Get Report",
-      "description": "Fetches the results of a single file submission, known as a report.",
+      "description": "Fetches the results of a single file submission, which is known as a 'report' from FireEye Detection On Demand based on the report ID you have specified.",
       "category": "investigation",
       "annotation": "get_report",
       "output_schema": {
@@ -245,7 +298,7 @@
           "type": "text",
           "name": "report_id",
           "placeholder": "e.g. 992694b3-20ab-4245-9b4c-8f3a1b7ec3b6",
-          "description": "The report ID returned after successfully submitting a file."
+          "description": "ID of the report whose results you want to retrieve from FireEye Detection On Demand. The report ID is returned after you have successfully submitted a file to FireEye Detection On Demand. "
         },
         {
           "title": "Extended",
@@ -256,14 +309,14 @@
           "tooltip": "Enable to see all malware engine reports",
           "name": "extended",
           "value": false,
-          "description": "Setting extended to true will allow you to see all malware engine reports. Default is false"
+          "description": "If you select the Extended checkbox, i.e., set it to 'true', then all the malware engine reports get retrieved. By default, this is set to 'false'."
         }
       ]
     },
     {
       "operation": "get_report_url",
       "title": "Get Report URL",
-      "description": "Fetches a presigned URL link to a browser viewable report.",
+      "description": "Fetches a presigned URL link to a browser viewable report of a single file submission, which is known as a 'report' from FireEye Detection On Demand based on the report ID you have specified. ",
       "category": "investigation",
       "annotation": "get_report_url",
       "output_schema": {
@@ -280,7 +333,7 @@
           "type": "text",
           "name": "report_id",
           "placeholder": "e.g 874da611-f82a-4331-afde-5943f4facb92",
-          "description": "The report ID returned after successfully submitting a file."
+          "description": "ID of the report whose browser viewable report presigned URL link you want to retrieve from FireEye Detection On Demand. The report ID is returned after you have successfully submitted a file to FireEye Detection On Demand. "
         },
         {
           "title": "Expiry",
@@ -291,14 +344,14 @@
           "name": "report_id",
           "tooltip": "Specify Expiry in hours. Default value is 72 hours.",
           "placeholder": "Minimum is 1 hour, and maximum is 8760 hours allowed.",
-          "description": "Expiry (in hours) for browser viewable report presigned URL link. Default value is 72 hours. Minimum is 1 hour, and maximum is 8760 hours (365 days)."
+          "description": "Expiry (in hours) for the browser viewable report presigned URL link. The default value is set at 72 hours, its minimum is set at 1 hour, and its maximum is set at 8760 hours (365 days)."
         }
       ]
     },
     {
       "operation": "get_artifacts",
       "title": "Get Artifacts",
-      "description": "Fetches artifacts, like a screenshot gif file, for the given report_id",
+      "description": "Fetches artifacts, like a screenshot gif file, from FireEye Detection On Demand based on the report ID, type of artifact, and artifact UUID you have specified.",
       "category": "investigation",
       "annotation": "get_artifacts",
       "output_schema": {},
@@ -312,7 +365,7 @@
           "type": "text",
           "name": "report_id",
           "placeholder": "e.g 874da611-f82a-4331-afde-5943f4facb92",
-          "description": "The report ID returned after successfully submitting a file."
+          "description": "ID of the report whose associated artifacts you want to retrieve from FireEye Detection On Demand. The report ID is returned after you have successfully submitted a file to FireEye Detection On Demand."
         },
         {
           "title": "Type",
@@ -322,7 +375,7 @@
           "type": "text",
           "name": "artifacts_type",
           "tooltip": "Type of artifact to download",
-          "description": "Type of artifact to download. Available options are screenshot, os_changes, vm_artifacts"
+          "description": "Type of artifact that you want to retrieve from FireEye Detection On Demand. You can specify the following options: screenshot, os_changes, and vm_artifacts. "
         },
         {
           "title": "Artifact UUID",
