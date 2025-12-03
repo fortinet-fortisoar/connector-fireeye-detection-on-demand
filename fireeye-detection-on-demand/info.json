@@ -111,7 +111,7 @@
           "visible": true,
           "editable": true,
           "type": "text",
-          "name": "hash",
+          "name": "urls",
           "tooltip": "Maximum of 5 URLs allowed.",
           "placeholder": "e.g. url1, url2",
           "description": "List of URLs that you want to submit for analysis to FireEye Detection On Demand. Use the '[url1,url2,...]' format to specify the URLs. You can specify a maximum of 5 URLs."
