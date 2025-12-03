@@ -4,7 +4,7 @@
     {
       "@context": "/api/3/contexts/WorkflowCollection",
       "@type": "WorkflowCollection",
-      "name": "Sample - FireEye Detection On Demand - 1.0.0",
+      "name": "Sample - FireEye Detection On Demand - 1.0.1",
       "description": "FireEye Detection On Demand is a threat detection service that uncovers harmful objects in the cloud. It delivers flexible file and content scanning capabilities to identify file-borne threats in your cloud, SOC, SIEM or files uploaded to web applications. This connector facilitates the automated operations related to submit files / urls , reports, artifacts.\",",
       "visible": true,
       "image": "/api/3/images/ab2366e0-4332-4434-9cf5-53d1025a8ec9",
@@ -66,7 +66,7 @@
                 "params": {
                   "hash": ""
                 },
-                "version": "1.0.0",
+                "version": "1.0.1",
                 "connector": "fireeye-detection-on-demand",
                 "operation": "submit_urls",
                 "operationTitle": "Submit URLs",
@@ -134,7 +134,7 @@
                 "params": {
                   "hash": ""
                 },
-                "version": "1.0.0",
+                "version": "1.0.1",
                 "connector": "fireeye-detection-on-demand",
                 "operation": "submit_file",
                 "operationTitle": "Submit File",
@@ -254,7 +254,7 @@
                 "params": {
                   "report_id": ""
                 },
-                "version": "1.0.0",
+                "version": "1.0.1",
                 "connector": "fireeye-detection-on-demand",
                 "operation": "get_report_url",
                 "operationTitle": "Get Report URL",
@@ -348,7 +348,7 @@
                 "params": {
                   "hash": ""
                 },
-                "version": "1.0.0",
+                "version": "1.0.1",
                 "connector": "fireeye-detection-on-demand",
                 "operation": "get_hashes",
                 "operationTitle": "Get Hashes",
@@ -418,7 +418,7 @@
                   "artifacts_type": "",
                   "artifacts_uuid": ""
                 },
-                "version": "1.0.0",
+                "version": "1.0.1",
                 "connector": "fireeye-detection-on-demand",
                 "operation": "get_artifacts",
                 "operationTitle": "Get Artifacts",
@@ -539,7 +539,7 @@
                   "extended": "",
                   "report_id": ""
                 },
-                "version": "1.0.0",
+                "version": "1.0.1",
                 "connector": "fireeye-detection-on-demand",
                 "operation": "get_reports",
                 "operationTitle": "Get Report",

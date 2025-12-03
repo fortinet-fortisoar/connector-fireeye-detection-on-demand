@@ -1,9 +1,9 @@
 {
   "name": "fireeye-detection-on-demand",
   "label": "FireEye Detection On Demand",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "FireEye Detection On Demand is a threat detection service that uncovers harmful objects in the cloud. It delivers flexible file and content scanning capabilities to identify file-borne threats in your cloud, SOC, SIEM or files uploaded to web applications. This connector facilitates the automated operations related to submit files / urls , reports, artifacts.",
-  "publisher": "Community",
+  "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
   "category": "Forensics and Malware Analysis",
@@ -11,7 +11,7 @@
   "icon_large_name": "FireEye_Detection_80x80.png",
   "ingestion_supported": false,
   "ingestion_modes": [],
-  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/fireeye-detection-on-demand/167/fireeye-detection-on-demand-v1-0-0",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -49,7 +49,7 @@
     {
       "operation": "get_hashes",
       "title": "Get File Reputation",
-      "description": "Retrieves malware results for a specific MD5 hash from FireEye Detection On Demand based on the MD5 filehash you have specified. ",
+      "description": "Retrieves malware results for a specific MD5 hash from FireEye Detection On Demand based on the MD5 filehash you have specified.",
       "category": "investigation",
       "annotation": "get_hashes",
       "output_schema": {
@@ -87,7 +87,8 @@
           "type": "text",
           "name": "hash",
           "placeholder": "Only MD5 hash allowed",
-          "description": "MD5 hash of a file for which you want to retrieve the malware analysis results from FireEye Detection On Demand."
+          "description": "MD5 hash of a file for which you want to retrieve the malware analysis results from FireEye Detection On Demand.",
+          "tooltip": "MD5 hash of a file for which you want to retrieve the malware analysis results from FireEye Detection On Demand."
         }
       ]
     },
@@ -110,10 +111,10 @@
           "visible": true,
           "editable": true,
           "type": "text",
-          "name": "hash",
+          "name": "urls",
           "tooltip": "Maximum of 5 URLs allowed.",
           "placeholder": "e.g. url1, url2",
-          "description": "List of URLs that you want to submit for analysis to FireEye Detection On Demand. Use the '[url1,url2,...]' format to specify the URLs. You can specify a maximum of 5 URLs. "
+          "description": "List of URLs that you want to submit for analysis to FireEye Detection On Demand. Use the '[url1,url2,...]' format to specify the URLs. You can specify a maximum of 5 URLs."
         }
       ]
     },
@@ -149,7 +150,7 @@
           "type": "text",
           "tooltip": "Password to be used by the detection engine to decrypt the password-protected file.",
           "name": "password",
-          "description": "Password to be used by the detection engine to decrypt the password-protected file. "
+          "description": "Password to be used by the detection engine to decrypt the password-protected file."
         },
         {
           "title": "Parameters",
@@ -159,7 +160,7 @@
           "type": "text",
           "placeholder": "e.g start -h localhost -p 5555",
           "name": "parameters",
-          "description": "Command-line parameter(s) to be used by the detection engine when running the file. This parameter is mainly applicable to .exe files. For example, setting the parameter to \"start -h localhost -p 5555\" makes the detection engine run a file named \"malicious.exe\" as \"malicious.exe start -h localhost -p 5555\". "
+          "description": "Command-line parameter(s) to be used by the detection engine when running the file. This parameter is mainly applicable to .exe files. For example, setting the parameter to \"start -h localhost -p 5555\" makes the detection engine run a file named \"malicious.exe\" as \"malicious.exe start -h localhost -p 5555\"."
         },
         {
           "title": "File Extraction",
@@ -181,7 +182,7 @@
           "tooltip": "Enable to extract the memory dump files that are dropped from the VM during dynamic analysis.",
           "name": "memory_dump",
           "value": false,
-          "description": "Select this checkbox, i.e set it to 'true' to extract the memory dump files that are dropped from the VM during dynamic analysis. You can download these extracted memory dump files using the \"Get Artifacts\" action. "
+          "description": "Select this checkbox, i.e set it to 'true' to extract the memory dump files that are dropped from the VM during dynamic analysis. You can download these extracted memory dump files using the \"Get Artifacts\" action."
         },
         {
           "title": "PCAP",
@@ -309,7 +310,7 @@
           "tooltip": "Enable to see all malware engine reports",
           "name": "extended",
           "value": false,
-          "description": "If you select the Extended checkbox, i.e., set it to 'true', then all the malware engine reports get retrieved. By default, this is set to 'false'."
+          "description": "If you select the Extended checkbox, i.e., set it to 'true', then all the malware engine reports get retrieved. By default, this is set to 'false'."
         }
       ]
     },
@@ -333,7 +334,7 @@
           "type": "text",
           "name": "report_id",
           "placeholder": "e.g 874da611-f82a-4331-afde-5943f4facb92",
-          "description": "ID of the report whose browser viewable report presigned URL link you want to retrieve from FireEye Detection On Demand. The report ID is returned after you have successfully submitted a file to FireEye Detection On Demand. "
+          "description": "ID of the report whose browser viewable report presigned URL link you want to retrieve from FireEye Detection On Demand. The report ID is returned after you have successfully submitted a file to FireEye Detection On Demand."
         },
         {
           "title": "Expiry",
