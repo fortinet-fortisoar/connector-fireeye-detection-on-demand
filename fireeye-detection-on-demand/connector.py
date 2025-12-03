@@ -11,7 +11,7 @@ logger = get_logger('fireeye-detection-on-demand')
 class FireEyeDOD(Connector):
     def execute(self, config, operations, params, **kwargs):
         try:
-            operation = operations.get(operations, None)
+            operation = operations_dict.get(operations)
             if not operation:
                     logger.info('Unsupported operation [{0}]'.format(operations))
                     raise ConnectorError('Unsupported operation [{0}]'.format(operations))
