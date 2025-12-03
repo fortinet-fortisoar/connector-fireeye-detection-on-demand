@@ -1,3 +1,10 @@
+"""
+Copyright start
+MIT License
+Copyright (c) 2025 Fortinet Inc
+Copyright end
+"""
+
 import requests
 from requests import exceptions as req_exceptions
 from integrations.crudhub import make_request
