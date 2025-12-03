@@ -310,7 +310,7 @@
           "tooltip": "Enable to see all malware engine reports",
           "name": "extended",
           "value": false,
-          "description": "If you select the Extended checkbox, i.e., set it to 'true', then all the malware engine reports get retrieved. By default, this is set to 'false'."
+          "description": "If you select the Extended checkbox, i.e., set it to 'true', then all the malware engine reports get retrieved. By default, this is set to 'false'."
         }
       ]
     },
@@ -334,7 +334,7 @@
           "type": "text",
           "name": "report_id",
           "placeholder": "e.g 874da611-f82a-4331-afde-5943f4facb92",
-          "description": "ID of the report whose browser viewable report presigned URL link you want to retrieve from FireEye Detection On Demand. The report ID is returned after you have successfully submitted a file to FireEye Detection On Demand. "
+          "description": "ID of the report whose browser viewable report presigned URL link you want to retrieve from FireEye Detection On Demand. The report ID is returned after you have successfully submitted a file to FireEye Detection On Demand."
         },
         {
           "title": "Expiry",
