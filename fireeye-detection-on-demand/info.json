@@ -11,7 +11,7 @@
   "icon_large_name": "FireEye_Detection_80x80.png",
   "ingestion_supported": false,
   "ingestion_modes": [],
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.1/fireeye-detection-on-demand/101/fireeye-detection-on-demand-v1-0-1",
   "configuration": {
     "fields": [
       {
